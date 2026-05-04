@@ -1,0 +1,18 @@
+{
+  "name": "daily-stock-briefing",
+  "version": "1.0.0",
+  "description": "코스피 + AI섹터 일일 브리핑 → Notion MCP 저장",
+  "scripts": {
+    "start": "npx ts-node briefing.ts",
+    "dev": "npx ts-node --watch briefing.ts"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.53.0",
+    "dotenv": "^16.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "ts-node": "^10.9.0",
+    "typescript": "^5.5.0"
+  }
+}

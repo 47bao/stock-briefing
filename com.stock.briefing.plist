@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <!-- ───────────────────────────────────────────────────────
+       macOS launchd 설정 — 매일 오전 08:00 (로컬 시각) 실행
+       설치:
+         cp ~/Documents/StockBriefings/com.stock.briefing.plist ~/Library/LaunchAgents/
+         launchctl load ~/Library/LaunchAgents/com.stock.briefing.plist
+       테스트:
+         launchctl start com.stock.briefing
+  ─────────────────────────────────────────────────────────── -->
+
+  <key>Label</key>
+  <string>com.stock.briefing</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <!-- node 경로는 `which node` 로 확인해서 수정하세요 -->
+    <string>/usr/local/bin/node</string>
+    <string>/usr/local/bin/ts-node</string>
+    <!-- 스크립트 절대경로 — 본인 경로로 수정하세요 -->
+    <string>/Users/여기에_유저명/Documents/stock-briefing/briefing.ts</string>
+  </array>
+
+  <!-- 작업 디렉토리 -->
+  <key>WorkingDirectory</key>
+  <string>/Users/여기에_유저명/Documents/stock-briefing</string>
+
+  <!-- 매일 08:00 실행 -->
+  <key>StartCalendarInterval</key>
+  <dict>
+    <key>Hour</key>
+    <integer>8</integer>
+    <key>Minute</key>
+    <integer>0</integer>
+  </dict>
+
+  <!-- 로그 파일 -->
+  <key>StandardOutPath</key>
+  <string>/Users/여기에_유저명/Documents/StockBriefings/launchd.log</string>
+  <key>StandardErrorPath</key>
+  <string>/Users/여기에_유저명/Documents/StockBriefings/launchd-err.log</string>
+
+  <!-- 환경변수 (또는 .env 파일 사용) -->
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>PATH</key>
+    <string>/usr/local/bin:/usr/bin:/bin</string>
+  </dict>
+
+  <key>RunAtLoad</key>
+  <false/>
+</dict>
+</plist>
